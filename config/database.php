@@ -5,13 +5,15 @@
 
 // Configuration de la base de données
 define('DB_HOST', 'localhost');
-define('DB_NAME', 'mvc_starter');
+define('DB_NAME', 'livreor');
 define('DB_USER', 'root');
 define('DB_PASS', '');
 define('DB_CHARSET', 'utf8mb4');
 
-// Configuration de l'application
-define('BASE_URL', 'https://mvc-starter.dev');
+// Configuration de l'application.
+if (!defined('BASE_URL')) {
+    define('BASE_URL', 'http://localhost');
+}
 define('APP_NAME', 'PHP MVC Starter');
 define('APP_VERSION', '1.0.0');
 
