@@ -8,6 +8,7 @@ define('DB_HOST', 'localhost');
 define('DB_NAME', 'mvc_starter');
 define('DB_USER', 'root');
 define('DB_PASS', '');
+define('DB_CHARSET', 'utf8mb4');
 
 // Configuration de l'application
 define('BASE_URL', 'https://mvc-starter.dev');
