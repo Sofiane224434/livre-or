@@ -45,21 +45,11 @@
 
             <div>
                 <a href="<?php echo url('profile/edit_login'); ?>">
-                    <div>✏️</div>
-                    <div>
-                        <div>Modifier mon login</div>
-                        <div>Changez votre nom d'utilisateur</div>
-                    </div>
-                    <div>→</div>
+                    <div>Modifier mon login</div>
                 </a>
 
                 <a href="<?php echo url('profile/edit_password'); ?>">
-                    <div>🔒</div>
-                    <div>
-                        <div>Modifier mon mot de passe</div>
-                        <div>Sécurisez votre compte avec un nouveau mot de passe</div>
-                    </div>
-                    <div>→</div>
+                    <div>Modifier mon mot de passe</div>
                 </a>
             </div>
         </div>
