@@ -20,8 +20,12 @@
 
                 <ul class="nav-menu" id="navMenu">
                     <li><a href="<?php echo url(); ?>">🏠 Accueil</a></li>
-                    <li><a href="<?php echo url('auth/login'); ?>">🔐 Connexion</a></li>
-                    <li><a href="<?php echo url('auth/register'); ?>">✍️ Inscription</a></li>
+                    <?php if (is_logged_in()): ?>
+                        <li><a href="<?php echo url('profile'); ?>">👤 Profil</a></li>
+                    <?php else: ?>
+                        <li><a href="<?php echo url('auth/login'); ?>">🔐 Connexion</a></li>
+                        <li><a href="<?php echo url('auth/register'); ?>">✍️ Inscription</a></li>
+                    <?php endif; ?>
                 </ul>
 
                 <?php if (is_logged_in()): ?>

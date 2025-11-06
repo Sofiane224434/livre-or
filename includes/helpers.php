@@ -352,6 +352,11 @@ function hash_password($password)
     return password_hash($password, PASSWORD_BCRYPT);
 }
 
+function verify_password($password, $hashed_password)
+{
+    return password_verify($password, $hashed_password);
+}
+
 function is_logged_in()
 {
     return isset($_SESSION['id']);
@@ -360,4 +365,10 @@ function is_logged_in()
 function user_exists($login)
 {
     return (bool) get_user_by_login($login);
+}
+
+function render($view, $data = [])
+{
+    extract($data);
+    require_once __DIR__ . '/../views/' . $view . '.php';
 }

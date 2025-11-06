@@ -25,3 +25,22 @@ function get_login_by_id($id)
 
     return $result ? $result['login'] : null;
 }
+
+function get_user_by_id($id)
+{
+    $query = "SELECT * FROM utilisateurs WHERE id = ? LIMIT 1";
+    return db_select_one($query, [$id]);
+}
+
+function update_user_login($id, $new_login)
+{
+    $query = "UPDATE utilisateurs SET login = ? WHERE id = ?";
+    return db_execute($query, [$new_login, $id]);
+}
+
+function update_user_password($id, $new_password)
+{
+    $hashed_password = hash_password($new_password);
+    $query = "UPDATE utilisateurs SET password = ? WHERE id = ?";
+    return db_execute($query, [$hashed_password, $id]);
+}
