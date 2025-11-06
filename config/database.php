@@ -14,7 +14,7 @@ define('DB_CHARSET', 'utf8mb4');
 if (!defined('BASE_URL')) {
     define('BASE_URL', 'http://localhost');
 }
-define('APP_NAME', 'PHP MVC Starter');
+define('APP_NAME', 'Mariage Habib & Fatima');
 define('APP_VERSION', '1.0.0');
 
 // Configuration des chemins (seulement si ROOT_PATH n'est pas déjà défini)

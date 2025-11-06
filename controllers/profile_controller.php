@@ -20,10 +20,11 @@ function profile_index()
     }
 
     // Afficher la vue du profil
-    render('profile/index', [
+    $data = [
         'title' => 'Mon Profil',
         'user' => $user
-    ]);
+    ];
+    load_view_with_layout('profile/index', $data);
 }
 
 /**
@@ -46,10 +47,11 @@ function edit_login()
     }
 
     // Afficher le formulaire de modification du login
-    render('profile/change_profile', [
+    $data = [
         'title' => 'Modifier mon login',
         'user' => $user
-    ]);
+    ];
+    load_view_with_layout('profile/change_profile', $data);
 }
 
 /**
@@ -155,10 +157,11 @@ function edit_password()
     }
 
     // Afficher le formulaire de modification du mot de passe
-    render('profile/change_password', [
+    $data = [
         'title' => 'Modifier mon mot de passe',
         'user' => $user
-    ]);
+    ];
+    load_view_with_layout('profile/change_password', $data);
 }
 
 /**
