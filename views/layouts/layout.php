@@ -1,298 +1,112 @@
 <!DOCTYPE html>
 <html lang="fr">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><?php echo isset($title) ? escape($title) . ' - ' . APP_NAME : APP_NAME; ?></title>
-    <link rel="stylesheet" href="<?php echo url('assets/css/style.css'); ?>">
-    <style>
-        /* Navigation améliorée pour le MVC Starter */
-        .navbar {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            padding: 0;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-        }
-        
-        .nav-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 0 20px;
-        }
-        
-        .nav-brand a {
-            color: white;
-            text-decoration: none;
-            font-size: 1.5em;
-            font-weight: bold;
-            padding: 15px 0;
-            display: block;
-        }
-        
-        .nav-menu {
-            display: flex;
-            list-style: none;
-            margin: 0;
-            padding: 0;
-            align-items: center;
-        }
-        
-        .nav-menu li {
-            position: relative;
-        }
-        
-        .nav-menu a {
-            color: white;
-            text-decoration: none;
-            padding: 15px 20px;
-            display: block;
-            transition: background-color 0.3s ease;
-            border-radius: 5px;
-            margin: 0 5px;
-        }
-        
-        .nav-menu a:hover {
-            background-color: rgba(255,255,255,0.1);
-        }
-        
-        .nav-menu .dropdown {
-            position: relative;
-        }
-        
-        .nav-menu .dropdown-content {
-            display: none;
-            position: absolute;
-            background-color: white;
-            min-width: 200px;
-            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-            z-index: 1000;
-            border-radius: 5px;
-            top: 100%;
-            left: 0;
-            overflow: hidden;
-        }
-        
-        .nav-menu .dropdown:hover .dropdown-content {
-            display: block;
-        }
-        
-        .nav-menu .dropdown-content a {
-            color: #333;
-            padding: 12px 16px;
-            text-decoration: none;
-            display: block;
-            margin: 0;
-            border-radius: 0;
-            transition: background-color 0.3s ease;
-        }
-        
-        .nav-menu .dropdown-content a:hover {
-            background-color: #f1f1f1;
-        }
-        
-        .nav-menu .dropdown-content .dropdown-header {
-            padding: 8px 16px;
-            font-size: 0.9em;
-            font-weight: bold;
-            color: #666;
-            background-color: #f8f9fa;
-            border-bottom: 1px solid #e9ecef;
-        }
-        
-        .mobile-menu-toggle {
-            display: none;
-            background: none;
-            border: none;
-            color: white;
-            font-size: 1.5em;
-            cursor: pointer;
-            padding: 10px;
-        }
-        
-        @media (max-width: 768px) {
-            .nav-container {
-                flex-direction: column;
-                align-items: stretch;
-            }
-            
-            .mobile-menu-toggle {
-                display: block;
-                position: absolute;
-                right: 20px;
-                top: 15px;
-            }
-            
-            .nav-menu {
-                display: none;
-                flex-direction: column;
-                width: 100%;
-                background-color: rgba(0,0,0,0.1);
-                margin-top: 10px;
-            }
-            
-            .nav-menu.active {
-                display: flex;
-            }
-            
-            .nav-menu li {
-                width: 100%;
-            }
-            
-            .nav-menu a {
-                margin: 0;
-                border-radius: 0;
-                border-bottom: 1px solid rgba(255,255,255,0.1);
-            }
-            
-            .nav-menu .dropdown-content {
-                position: static;
-                display: block;
-                box-shadow: none;
-                background-color: rgba(0,0,0,0.1);
-                margin-left: 20px;
-            }
-            
-            .nav-menu .dropdown-content a {
-                color: rgba(255,255,255,0.8);
-                background-color: transparent;
-            }
-        }
-        
-        /* Flash messages styling */
-        .flash-messages {
-            max-width: 1200px;
-            margin: 20px auto;
-            padding: 0 20px;
-        }
-        
-        .flash-message {
-            padding: 12px 20px;
-            margin-bottom: 10px;
-            border-radius: 5px;
-            position: relative;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-        }
-        
-        .flash-success {
-            background-color: #d4edda;
-            color: #155724;
-            border: 1px solid #c3e6cb;
-        }
-        
-        .flash-error {
-            background-color: #f8d7da;
-            color: #721c24;
-            border: 1px solid #f5c6cb;
-        }
-        
-        .flash-info {
-            background-color: #d1ecf1;
-            color: #0c5460;
-            border: 1px solid #bee5eb;
-        }
-        
-        .flash-warning {
-            background-color: #fff3cd;
-            color: #856404;
-            border: 1px solid #ffeaa7;
-        }
-        
-        .flash-close {
-            background: none;
-            border: none;
-            font-size: 1.2em;
-            cursor: pointer;
-            color: inherit;
-            opacity: 0.7;
-            margin-left: 10px;
-        }
-        
-        .flash-close:hover {
-            opacity: 1;
-        }
-    </style>
+    <link rel="stylesheet" href="<?php echo url('assets/css/output.css'); ?>">
 </head>
-<body>
-    <header class="header">
-        <nav class="navbar">
-            <div class="nav-container">
-                <div class="nav-brand">
-                    <a href="<?php echo url(); ?>"><?php echo APP_NAME; ?></a>
+
+<body class="min-h-screen flex flex-col bg-gradient-to-br from-rose-50 via-pink-50 to-purple-50 text-gray-800">
+
+    <header class="bg-white/90 backdrop-blur-sm shadow-lg border-b-4 border-pink-300">
+        <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-20">
+                <div class="flex items-center space-x-4">
+                    <a href="<?php echo url(); ?>" class="flex items-center space-x-3 group">
+                        <span class="text-4xl">💕</span>
+                        <span
+                            class="text-2xl font-extrabold bg-gradient-to-r from-pink-600 to-purple-600 bg-clip-text text-transparent hover:from-pink-700 hover:to-purple-700 transition duration-300">
+                            <?php echo APP_NAME; ?>
+                        </span>
+                    </a>
                 </div>
-                
-                <button class="mobile-menu-toggle" onclick="toggleMobileMenu()">☰</button>
-                
-                <ul class="nav-menu" id="navMenu">
-                    <li><a href="<?php echo url(); ?>">🏠 Accueil</a></li>
-                    <li><a href="<?php echo url('documentation'); ?>">📚 Documentation</a></li>
-                </ul>
+
+                <div class="flex items-center">
+                    <!-- Mobile toggle -->
+                    <button id="mobileMenuBtn"
+                        class="md:hidden p-2 rounded-lg text-pink-600 hover:bg-pink-100 focus:outline-none transition duration-200"
+                        aria-label="Toggle menu">
+                        <span class="text-2xl">☰</span>
+                    </button>
+
+                    <!-- Menu -->
+                    <ul id="navMenu" class="hidden md:flex md:items-center md:space-x-2">
+                        <li><a href="<?php echo url(); ?>"
+                                class="px-4 py-2 rounded-lg font-semibold text-gray-700 hover:bg-gradient-to-r hover:from-pink-100 hover:to-purple-100 hover:text-pink-700 transition duration-200">🏠
+                                Accueil</a>
+                        </li>
+                        <?php if (is_logged_in()): ?>
+                            <li><a href="<?php echo url('profile'); ?>"
+                                    class="px-4 py-2 rounded-lg font-semibold text-gray-700 hover:bg-gradient-to-r hover:from-pink-100 hover:to-purple-100 hover:text-pink-700 transition duration-200">👤
+                                    Profil</a></li>
+                            <li><a href="<?php echo url('goldbook'); ?>"
+                                    class="px-4 py-2 rounded-lg font-semibold text-gray-700 hover:bg-gradient-to-r hover:from-pink-100 hover:to-purple-100 hover:text-pink-700 transition duration-200">📖
+                                    Livre d'Or</a></li>
+                        <?php else: ?>
+                            <li><a href="<?php echo url('auth/login'); ?>"
+                                    class="px-4 py-2 rounded-lg font-semibold text-gray-700 hover:bg-gradient-to-r hover:from-pink-100 hover:to-purple-100 hover:text-pink-700 transition duration-200">🔐
+                                    Connexion</a></li>
+                            <li><a href="<?php echo url('auth/register'); ?>"
+                                    class="px-4 py-2 rounded-lg font-semibold text-gray-700 hover:bg-gradient-to-r hover:from-pink-100 hover:to-purple-100 hover:text-pink-700 transition duration-200">✍️
+                                    Inscription</a></li>
+                        <?php endif; ?>
+                    </ul>
+
+                    <?php if (is_logged_in()): ?>
+                        <div class="hidden md:flex md:items-center md:ml-4 space-x-3">
+                            <span
+                                class="px-3 py-1.5 bg-gradient-to-r from-pink-100 to-purple-100 text-pink-700 font-semibold rounded-lg text-sm border border-pink-200">👤
+                                <?php e(get_login_by_id($_SESSION['id'])); ?></span>
+                            <a href="<?php echo url('auth/logout'); ?>"
+                                class="inline-flex items-center px-4 py-2 bg-gradient-to-r from-red-500 to-red-600 text-white text-sm font-bold rounded-lg hover:from-red-600 hover:to-red-700 shadow-md hover:shadow-lg transition duration-200 transform hover:scale-105">Déconnexion</a>
+                        </div>
+                    <?php endif; ?>
+                </div>
             </div>
         </nav>
     </header>
 
-    <main class="main-content">
-        <?php 
+    <main class="flex-1 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 w-full">
+        <?php
         // Affichage des messages flash
         $flash_messages = get_flash_messages();
-        if (!empty($flash_messages)): 
-        ?>
-            <div class="flash-messages">
+        if (!empty($flash_messages)):
+            ?>
+            <div class="fixed top-4 right-4 z-50 space-y-2 w-full max-w-xs">
                 <?php foreach ($flash_messages as $type => $messages): ?>
-                    <?php foreach ($messages as $message): ?>
-                        <div class="flash-message flash-<?php echo escape($type); ?>">
-                            <span><?php echo escape($message); ?></span>
-                            <button class="flash-close" onclick="this.parentElement.remove()" title="Fermer">×</button>
+                    <?php foreach ($messages as $message):
+                        // map type to color
+                        $color = ($type === 'success') ? 'green' : (($type === 'error') ? 'red' : 'blue');
+                        ?>
+                        <div
+                            class="flex items-start justify-between px-4 py-2 border-l-4 bg-<?= $color ?>-50 border-<?= $color ?>-400 text-<?= $color ?>-800 rounded shadow">
+                            <div class="text-sm">
+                                <?php echo escape($message); ?>
+                            </div>
+                            <button class="ml-4 text-<?= $color ?>-600 font-bold" onclick="this.parentElement.remove()"
+                                title="Fermer">×</button>
                         </div>
                     <?php endforeach; ?>
                 <?php endforeach; ?>
             </div>
         <?php endif; ?>
-        
+
         <?php echo $content ?? ''; ?>
     </main>
 
-    <footer class="footer">
-        <div class="footer-content">
-            <div style="max-width: 1200px; margin: 0 auto; padding: 20px; text-align: center; color: #666;">
-                <p>&copy; <?php echo date('Y'); ?> <?php echo APP_NAME; ?> - Kit de démarrage MVC pour l'apprentissage</p>
-                <p style="font-size: 0.9em; margin-top: 10px;">
-                    Développé avec ❤️ pour les étudiants | 
-                    <a href="<?php echo url('documentation'); ?>" style="color: #667eea;">Documentation</a> | 
-                    <a href="<?php echo url('example'); ?>" style="color: #667eea;">Exemples</a>
-                </p>
-            </div>
+    <footer class="bg-gradient-to-r from-pink-200 via-purple-200 to-pink-200 py-3 mt-4 text-center">
+        <div class="flex justify-center gap-2 mb-2 text-2xl items-center">
+            <span>🌸</span>
+            <span>💕</span>
+            <span>🌺</span>
         </div>
+        <p class="text-gray-700 text-base font-semibold mb-1">Habib &amp; Fatima</p>
+        <p class="text-gray-600 text-sm">&copy; <?php echo date('Y'); ?> — <?php echo APP_NAME; ?> — Tous droits
+            réservés</p>
+        <p class="text-xs text-gray-500 mt-2">Avec tout notre amour 💖</p>
     </footer>
-
-    <script src="<?php echo url('assets/js/app.js'); ?>"></script>
-    <script>
-        // Menu mobile toggle
-        function toggleMobileMenu() {
-            const navMenu = document.getElementById('navMenu');
-            navMenu.classList.toggle('active');
-        }
-        
-        // Fermer le menu mobile quand on clique sur un lien
-        document.querySelectorAll('.nav-menu a').forEach(link => {
-            link.addEventListener('click', () => {
-                const navMenu = document.getElementById('navMenu');
-                navMenu.classList.remove('active');
-            });
-        });
-        
-        // Auto-hide flash messages après 5 secondes
-        document.querySelectorAll('.flash-message').forEach(message => {
-            setTimeout(() => {
-                message.style.opacity = '0';
-                setTimeout(() => {
-                    message.remove();
-                }, 300);
-            }, 5000);
-        });
-    </script>
 </body>
+
 </html>
